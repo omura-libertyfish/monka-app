@@ -1,7 +1,7 @@
 lock "3.17.0"
 
 set :application, "monka-app"
-#set :repo_url, "git@github.com:TakatoshiNakadate/sample3_app.git"​
+set :repo_url, "git@github.com:omura-libertyfish/monka-app.git"
 server "192.168.1.98", port: 2525, roles: [:app, :web, :db], primary: true
 
 # user
@@ -62,7 +62,7 @@ namespace :puma do
     end
   end
 
-  before :deploy, :make_dirs
+#   before :deploy, :make_dirs
 end
 
 namespace :deploy do
@@ -95,6 +95,6 @@ namespace :deploy do
     end
   end
 
-  before :deploy,     :upload
-  before :deploy,     :check_revision
+#   before :deploy,     :upload
+#   before :deploy,     :check_revision
 end
