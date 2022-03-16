@@ -1,4 +1,4 @@
-lock "3.17.0"
+lock "3.16.0"
 
 set :application, "monka-app"
 set :repo_url, "git@github.com:omura-libertyfish/monka-app.git"
@@ -36,6 +36,7 @@ set :ssh_options,     {
 # rvm
 #set :rvm_ruby_version, 'ruby-2.7.4'
 # rbenv
+set :rbenv_type, :user
 set :rbenv_ruby, '2.7.4'
 
 # environment
@@ -50,7 +51,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
 )
 set :linked_files, fetch(:linked_files, []).push(
   'config/database.yml',
-  'config/secrets.yml'
+  # 'config/secrets.yml'
 )
 
 namespace :puma do
@@ -62,7 +63,7 @@ namespace :puma do
     end
   end
 
-#   before :deploy, :make_dirs
+  before :deploy, 'puma:make_dirs'
 end
 
 namespace :deploy do
@@ -91,10 +92,10 @@ namespace :deploy do
         execute "mkdir -p #{shared_path}/config"
       end
       upload!('config/database.yml', "#{shared_path}/config/database.yml")
-      upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
+      # upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
     end
   end
 
-#   before :deploy,     :upload
-#   before :deploy,     :check_revision
+    before :deploy,     'deploy:upload'
+    before :deploy,     'deploy:check_revision'
 end
