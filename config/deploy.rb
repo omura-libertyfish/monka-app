@@ -1,4 +1,4 @@
-lock "3.16.0"
+lock "3.17.0"
 
 set :application, "monka-app"
 set :repo_url, "git@github.com:omura-libertyfish/monka-app.git"
@@ -24,6 +24,8 @@ set :puma_error_log,  "#{release_path}/log/puma.error.log"
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
+
+append :linked_dirs, "log", "tmp/pids", "tmp/sockets"
 
 # terminal
 set :pty,             true
