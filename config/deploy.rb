@@ -1,4 +1,4 @@
-lock "3.17.0"
+lock "3.16.0"
 
 set :application, "monka-app"
 set :repo_url, "git@github.com:omura-libertyfish/monka-app.git"
