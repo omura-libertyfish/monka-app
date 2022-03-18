@@ -25,8 +25,6 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 
-append :linked_dirs, "log", "tmp/pids", "tmp/sockets"
-
 # terminal
 set :pty,             true
 
@@ -38,8 +36,8 @@ set :ssh_options,     {
 # rvm
 #set :rvm_ruby_version, 'ruby-2.7.4'
 # rbenv
-# set :rbenv_type, :user
-# set :rbenv_ruby, '2.7.4'
+set :rbenv_type, :user
+set :rbenv_ruby, '2.7.4'
 
 # environment
 set :linked_dirs, fetch(:linked_dirs, []).push(
@@ -55,6 +53,8 @@ set :linked_files, fetch(:linked_files, []).push(
   'config/database.yml',
   # 'config/secrets.yml'
 )
+
+execute! :sudo # 追加した
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
@@ -83,7 +83,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      invoke 'puma:restart'
+      invoke 'puma:jungle:restart'
     end
   end
 
@@ -100,4 +100,5 @@ namespace :deploy do
 
     before :deploy,     'deploy:upload'
     before :deploy,     'deploy:check_revision'
+    before :deploy,     'deploy:restart'
 end

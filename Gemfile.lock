@@ -193,6 +193,8 @@ GEM
     sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    sshkit-sudo (0.1.0)
+      sshkit (~> 1.8)
     thor (1.2.1)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
@@ -242,6 +244,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   sqlite3 (~> 1.4)
+  sshkit-sudo
   turbolinks (~> 5)
   web-console (>= 4.1.0)
   webdrivers
