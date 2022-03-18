@@ -38,8 +38,8 @@ set :ssh_options,     {
 # rvm
 #set :rvm_ruby_version, 'ruby-2.7.4'
 # rbenv
-set :rbenv_type, :user
-set :rbenv_ruby, '2.7.4'
+# set :rbenv_type, :user
+# set :rbenv_ruby, '2.7.4'
 
 # environment
 set :linked_dirs, fetch(:linked_dirs, []).push(

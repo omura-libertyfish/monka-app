@@ -29,6 +29,14 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem "sassc", "~>2.1.0"
 
+
+
+gem "capistrano", "3.16.0", require: false
+gem 'capistrano-rbenv', require: false
+gem 'capistrano-rails', require: false
+gem 'capistrano-bundler', require: false
+gem 'capistrano3-puma', require: false
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -45,11 +53,7 @@ group :development do
   gem 'spring'
   
   
-  gem "capistrano", "3.16.0", require: false
-  gem 'capistrano-rbenv', require: false
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma', require: false
+  
 
 end
 
