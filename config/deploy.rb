@@ -25,6 +25,8 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 
+set  :puma_service_unit_env_file, '/ etc / environment'
+
 # terminal
 set :pty,             true
 
@@ -54,7 +56,6 @@ set :linked_files, fetch(:linked_files, []).push(
   # 'config/secrets.yml'
 )
 
-execute! :sudo # 追加した
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
@@ -83,7 +84,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      invoke 'puma:jungle:restart'
+      invoke 'puma:restart'
     end
   end
 
@@ -100,5 +101,5 @@ namespace :deploy do
 
     before :deploy,     'deploy:upload'
     before :deploy,     'deploy:check_revision'
-    before :deploy,     'deploy:restart'
+    # before :deploy,     'deploy:restart'
 end
